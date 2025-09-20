@@ -1,22 +1,31 @@
 using UnityEngine;
-
-public class WorkerState
+using Platformer.Core;
+using Platformer.Events;
+public class WorkerState : GameAwareBehaviour
 {
-    public StateType state{get; private set;}
-    public float value;
-    public WorkerState(StateType initialState)
+    public ActiveState activeState { get; private set; }
+    public FollowStateType followStateType { get; private set; }
+    public MoveStateType moveStateType { get; private set; }
+
+    public void SetActiveState(ActiveState state)
     {
-        state = initialState;
-        value = 0f;
+        activeState = state;
+    }
+    public void SetFollowStateType(FollowStateType state)
+    {
+        followStateType = state;
+    }
+
+    public void SetMoveStateType(MoveStateType state)
+    {
+        moveStateType = state;
+    }
+
+    public void ChangeFollowState(FollowStateType state)
+    {
+        var ev = Simulation.Schedule<ChangeStateEvent>();
+        ev.target = this.gameObject;
+        ev.newState = state;
+        SetFollowStateType(state);
     }
 }
-public enum StateType
-{
-    待機,
-    生産,
-    運搬,
-    睡眠,
-    暴走
-}
-
-

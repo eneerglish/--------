@@ -71,7 +71,7 @@ public class EmotionMonitorWindow : EditorWindow
     }
     
     // リフレクションを使って非公開のemotionListフィールドを取得
-    private List<WorkerEmotion> GetEmotionList(Worker worker)
+    private List<EmotionData> GetEmotionList(Worker worker)
     {
         if (worker == null)
             return null;
@@ -86,6 +86,6 @@ public class EmotionMonitorWindow : EditorWindow
         // emotionListフィールドを取得
         var emotionListField = emotionsInstance.GetType().GetField("emotionList", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
         
-        return (List<WorkerEmotion>)emotionListField?.GetValue(emotionsInstance);
+        return (List<EmotionData>)emotionListField?.GetValue(emotionsInstance);
     }
 }

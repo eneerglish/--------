@@ -15,6 +15,8 @@ namespace Platformer.Core
         {
             internal float tick;
 
+            protected GameModel model = Simulation.GetModel<GameModel>();
+
             public int CompareTo(Event other)
             {
                 return tick.CompareTo(other.tick);

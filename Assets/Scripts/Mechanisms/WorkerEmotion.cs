@@ -1,33 +1,38 @@
 using UnityEngine;
-
-public class WorkerEmotion
+using System.Collections.Generic;
+public class WorkerEmotion : GameAwareBehaviour
 {
-    public EmotionType emotion { get; private set; }
-    private float _value;
-    public float value
+    public List<EmotionData> emotionList = new List<EmotionData>();
+    //リストの一番上が現在の感情
+    public EmotionData nowEmotion
     {
-        get { return _value; }
-        set { _value = Mathf.Clamp01(value); }
+        get
+        {
+            return emotionList[0];
+        }
+    }
+    public WorkerEmotion()
+    {
+        for (int i = 0; i < System.Enum.GetValues(typeof(EmotionType)).Length; i++)
+        {
+            emotionList.Add(new EmotionData((EmotionType)i));
+        }
     }
 
-    public WorkerEmotion(EmotionType initialEmotion)
+    public EmotionData GetEmotion(EmotionType type)
     {
-        emotion = initialEmotion;
-        value = 0.5f; //0~1で変化
+        return emotionList.Find(e => e.emotion == type);
+    }
+    public bool SortEmotionAndCheckChange()
+    {
+        EmotionData oldEmotion = emotionList[0];
+        emotionList.Sort((a, b) => b.value.CompareTo(a.value));
+        if (oldEmotion != nowEmotion)
+        {
+            return true;
+        }
+        return false;
     }
 
-    public void SetValue(float newValue)
-    {
-        value = Mathf.Clamp01(newValue);
-    }
+
 }
-
-public enum EmotionType
-    {
-        喜,
-        怒,
-        哀,
-        楽
-    }
-//とりあえず、うれしいと楽しいはgood,怒りと悲しいはbadに分ける
-//感情は、workerの行動に影響を与える
