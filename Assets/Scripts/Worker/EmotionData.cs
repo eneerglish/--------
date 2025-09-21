@@ -3,7 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public class EmotionData
 {
-    public EmotionType emotion{ get; private set; }
+    //列挙型と、その感情の現在の値を対応付ける
+    public EmotionType emotion { get; private set; }
     private float _value;
     public float value
     {

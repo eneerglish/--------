@@ -10,7 +10,7 @@ namespace Platformer.Events
         public override void Execute()
         {
             Debug.Log("おりゃあああ");
-            Animator anim = target.GetComponent<Animator>();
+            Animator anim = target.GetComponent<Worker>().anim;
             anim.SetBool("IsRampage", true);
 
             var ev = Simulation.Schedule<StopRampageEvent>(2);

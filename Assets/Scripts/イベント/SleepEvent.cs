@@ -3,9 +3,6 @@ using Platformer.Core;
 
 namespace Platformer.Events
 {
-    /// <summary>
-    /// ワーカーが生産するときに呼ばれるイベント
-    /// </summary>
     public class SleepEvent : Simulation.Event<SleepEvent>
     {
         public GameObject target;

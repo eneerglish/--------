@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 public class WorkerEmotion : GameAwareBehaviour
 {
+    //ワーカーの感情はこのスクリプトで管理する
     public List<EmotionData> emotionList = new List<EmotionData>();
-    //リストの一番上が現在の感情
     public EmotionData nowEmotion
     {
         get
@@ -11,7 +11,7 @@ public class WorkerEmotion : GameAwareBehaviour
             return emotionList[0];
         }
     }
-    public WorkerEmotion()
+    void Start()
     {
         for (int i = 0; i < System.Enum.GetValues(typeof(EmotionType)).Length; i++)
         {

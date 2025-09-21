@@ -13,6 +13,8 @@ namespace Platformer.Events
             Animator anim = target.GetComponent<Animator>();
             //anim.SetBool("IsProduce", false);
 
+            ProductionSpace p = target.GetComponent<Worker>().facility.GetComponent<ProductionSpace>();
+            p.ProduceItem();
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
             
         }

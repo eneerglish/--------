@@ -14,7 +14,8 @@ namespace Platformer.Events
             switch (newState)
             {
                 case FollowStateType.待機:
-                    Debug.Log("暇だなー");
+                    SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+                    spev.str = "暇だなー";
                     emotions.GetEmotion(EmotionType.喜).value += 0.1f;
                     break;
                 case FollowStateType.生産:
@@ -24,7 +25,8 @@ namespace Platformer.Events
                     produceEvent.target = target;
                     break;
                 case FollowStateType.運搬:
-                    Debug.Log("よーし、運搬するぞー！");
+                    SpeakEvent spev2 = Simulation.Schedule<SpeakEvent>();
+                    spev2.str = "よーし、運ぶぞ！！";
                     emotions.GetEmotion(EmotionType.怒).value += 0.1f;
                     break;
                 case FollowStateType.睡眠:

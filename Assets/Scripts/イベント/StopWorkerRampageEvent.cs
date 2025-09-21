@@ -10,7 +10,7 @@ namespace Platformer.Events
         public override void Execute()
         {
             Debug.Log("ふうー、すっきりしたぜー");
-            Animator anim = target.GetComponent<Animator>();
+            Animator anim = target.GetComponent<Worker>().anim;
             anim.SetBool("IsRampage", false);
 
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
