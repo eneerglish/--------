@@ -78,14 +78,14 @@ public class Worker : GameAwareBehaviour
             {
                 boaredValue = 0f;
 
-                MoveStateType[] destinations = {
+                /*MoveStateType[] destinations = {
                     MoveStateType.牧場へ,
                     MoveStateType.水辺へ
                 };
 
-                int randomIndex = Random.Range(0, destinations.Length);
+                int randomIndex = Random.Range(0, destinations.Length);*/
 
-                workerState.SetMoveStateType(destinations[randomIndex]);
+                workerState.SetMoveStateType(MoveStateType.牧場へ);
             }
         }
 

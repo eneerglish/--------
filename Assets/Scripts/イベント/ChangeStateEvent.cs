@@ -51,6 +51,7 @@ namespace Platformer.Events
                         emotions.GetEmotion(EmotionType.怒).value += 0.1f;
                         var ev = Simulation.Schedule<StartFedingEvent>();
                         ev.target = target;
+                        ev.facility = facility as FarmSpace;
                         break;
                 }
 
