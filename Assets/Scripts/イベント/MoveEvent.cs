@@ -10,7 +10,8 @@ namespace Platformer.Events
         public MoveStateType moveStateType;
         public override void Execute()
         {
-            Debug.Log($"{moveStateType}行くぞ");
+            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = $"{moveStateType}行くぞ";
             NavMeshAgent navMesh = target.GetComponent<Worker>().navMesh;
             navMesh.SetDestination(model.positionManager.posList[(int)moveStateType].position);
         }

@@ -1,9 +1,9 @@
 using UnityEngine;
 using Platformer.Core;
+using Platformer.Events;
 
-public class ProductionSpace : GameAwareBehaviour
+public class ProductionSpace : Facility
 {
-    //生産場所はこのスクリプトで管理
     public Transform spawnPoint;
     public float jumpForce = 5f;
 
@@ -12,6 +12,10 @@ public class ProductionSpace : GameAwareBehaviour
         spawnPoint = this.transform;
     }
 
+    public override void DoStartProcess(GameObject target, Facility facility )
+    {
+        target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
+    }
     public void ProduceItem()
     {
         GameObject prefab = model.productionList.GetProduction();

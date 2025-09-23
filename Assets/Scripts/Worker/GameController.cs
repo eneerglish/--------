@@ -4,8 +4,7 @@ using UnityEngine;
 namespace Platformer.Mechanics
 {
     /// <summary>
-    /// This class exposes the the game model in the inspector, and ticks the
-    /// simulation.
+    /// イベントのTick処理を行うものらしい
     /// </summary> 
     public class GameController : GameAwareBehaviour
     {

@@ -9,7 +9,8 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            Debug.Log("おりゃあああ");
+            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = "おりゃあああああああ";
             Animator anim = target.GetComponent<Worker>().anim;
             anim.SetBool("IsRampage", true);
 

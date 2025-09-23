@@ -6,15 +6,15 @@ namespace Platformer.Events
     public class StopProduceEvent : Simulation.Event<StopProduceEvent>
     {
         public GameObject target;
-
+        public ProductionSpace facility;
         public override void Execute()
         {
-            Debug.Log("頑張ったー");
+            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = "頑張ったー";
             Animator anim = target.GetComponent<Animator>();
             //anim.SetBool("IsProduce", false);
 
-            ProductionSpace p = target.GetComponent<Worker>().facility.GetComponent<ProductionSpace>();
-            p.ProduceItem();
+            facility.ProduceItem();
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
             
         }

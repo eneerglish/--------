@@ -22,6 +22,8 @@ public class Worker : GameAwareBehaviour
 
     float sleepDesireUpRate = 10f;//眠くなる速度
     float sleapDuration = 5f;//睡眠時間
+    float boaredValue = 0f; //0~1
+    float boaredSpead = 5f;
     #endregion
 
     public void InitSet()
@@ -48,7 +50,7 @@ public class Worker : GameAwareBehaviour
 
     public void 仮move()
     {
-        workerState.SetMoveStateType(MoveStateType.家へ);
+        workerState.SetMoveStateType(MoveStateType.生産所へ);
     }
 
     void Start()
@@ -68,48 +70,69 @@ public class Worker : GameAwareBehaviour
             }
         }
 
+        //暇なとき適当な場所に行くようにしたい
+        if (workerState.activeState == ActiveState.FollowStateType && workerState.followStateType == FollowStateType.待機)
+        {
+            boaredValue += Time.deltaTime / boaredSpead;
+            if (boaredValue >= 1f)
+            {
+                boaredValue = 0f;
+
+                MoveStateType[] destinations = {
+                    MoveStateType.牧場へ,
+                    MoveStateType.水辺へ
+                };
+
+                int randomIndex = Random.Range(0, destinations.Length);
+
+                workerState.SetMoveStateType(destinations[randomIndex]);
+            }
+        }
+
         if (workerState.activeState == ActiveState.FollowStateType)
-        {
-            switch (workerState.followStateType)
             {
-                case FollowStateType.待機:
-                    workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 50f;
-                    workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 100f;
-                    break;
+                switch (workerState.followStateType)
+                {
+                    case FollowStateType.待機:
+                        workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 50f;
+                        workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 100f;
+                        break;
 
-                case FollowStateType.生産:
+                    case FollowStateType.生産:
 
-                    workerEmotion.GetEmotion(EmotionType.喜).value -= Time.deltaTime / 1000f;
-                    workerEmotion.GetEmotion(EmotionType.怒).value += Time.deltaTime / 200f;
-                    break;
+                        workerEmotion.GetEmotion(EmotionType.喜).value -= Time.deltaTime / 1000f;
+                        workerEmotion.GetEmotion(EmotionType.怒).value += Time.deltaTime / 200f;
+                        break;
 
-                case FollowStateType.運搬:
-                    workerEmotion.GetEmotion(EmotionType.喜).value -= Time.deltaTime / 1000f;
-                    workerEmotion.GetEmotion(EmotionType.怒).value += Time.deltaTime / 200f;
-                    break;
-                case FollowStateType.睡眠:
-                    workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 100f;
-                    workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
-                    break;
-                case FollowStateType.暴走:
-                    sleapValue += Time.deltaTime / (sleepDesireUpRate / 2);
-                    workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 100f;
-                    workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
-                    break;
+                    case FollowStateType.運搬:
+                        workerEmotion.GetEmotion(EmotionType.喜).value -= Time.deltaTime / 1000f;
+                        workerEmotion.GetEmotion(EmotionType.怒).value += Time.deltaTime / 200f;
+                        break;
+                    case FollowStateType.睡眠:
+                        workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 100f;
+                        workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
+                        break;
+                    case FollowStateType.暴走:
+                        sleapValue += Time.deltaTime / (sleepDesireUpRate / 2);
+                        workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 100f;
+                        workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
+                        break;
+                }
             }
-        }
-        else if (workerState.activeState == ActiveState.MoveStateType)
-        {
-            switch (workerState.moveStateType)
+            else if (workerState.activeState == ActiveState.MoveStateType)
             {
-                case MoveStateType.生産所へ:
-                    break;
-                case MoveStateType.水辺へ:
-                    break;
-                case MoveStateType.家へ:
-                    break;
+                switch (workerState.moveStateType)
+                {
+                    case MoveStateType.生産所へ:
+                        break;
+                    case MoveStateType.水辺へ:
+                        break;
+                    case MoveStateType.家へ:
+                        break;
+                    case MoveStateType.牧場へ:
+                        break;
+                }
             }
-        }
 
         if (workerEmotion.SortEmotionAndCheckChange())
             {

@@ -9,8 +9,10 @@ public enum ActiveState
 public enum FollowStateType
 {
     待機,
+    水遊び,
     生産,
     運搬,
+    餌やり,
     睡眠,
     暴走
 }
@@ -19,7 +21,8 @@ public enum MoveStateType
 {
     生産所へ,
     水辺へ,
-    家へ
+    家へ,
+    牧場へ
 }
 
 

@@ -3,15 +3,14 @@ using Platformer.Core;
 
 namespace Platformer.Events
 {
-    public class StopRampageEvent : Simulation.Event<StopRampageEvent>
+    public class FinishFedingEvent : Simulation.Event<FinishFedingEvent>
     {
         public GameObject target;
 
         public override void Execute()
         {
-            Debug.Log("ふうー、すっきりしたぜー");
-            Animator anim = target.GetComponent<Worker>().anim;
-            anim.SetBool("IsRampage", false);
+            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = "餌やったぞ";
 
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
         }
