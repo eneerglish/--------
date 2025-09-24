@@ -8,6 +8,7 @@ public class GameModel : MonoBehaviour
     public ProductionList productionList;
     public PositionManager positionManager;
     public EffectManager effectManager;
+    public WorkerManager workerManager;
     public TMP_Text text;
     void Awake()
     {

@@ -71,6 +71,14 @@ namespace Platformer.Events
                     ev.target = target;
                     break;
                 }
+                
+                case FollowStateType.被捕食:
+                    {
+                        var ev = Simulation.Schedule<StartPredationEvent>();
+                        ev.target = target;
+                        ev.enemy = facility as Enemy;
+                        break;
+                }
             }
         }
     }

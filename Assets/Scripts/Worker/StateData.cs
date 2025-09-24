@@ -14,7 +14,8 @@ public enum FollowStateType
     運搬,
     餌やり,
     睡眠,
-    暴走
+    暴走,
+    被捕食
 }
 
 public enum MoveStateType
