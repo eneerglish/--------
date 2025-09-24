@@ -13,6 +13,7 @@ namespace Platformer.Events
             spev.str = "おりゃあああああああ";
             Animator anim = target.GetComponent<Worker>().anim;
             anim.SetBool("IsRampage", true);
+            model.effectManager.InstantiateEffect(0, target.transform, 2);
 
             var ev = Simulation.Schedule<StopRampageEvent>(2);
             ev.target = target;

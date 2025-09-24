@@ -14,6 +14,7 @@ namespace Platformer.Events
             Animator anim = target.GetComponent<Worker>().anim;
             anim.SetBool("IsRampage", false);
 
+
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
         }
     }
