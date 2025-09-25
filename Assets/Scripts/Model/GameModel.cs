@@ -9,7 +9,12 @@ public class GameModel : MonoBehaviour
     public PositionManager positionManager;
     public EffectManager effectManager;
     public WorkerManager workerManager;
+    public FacilityManager facilityManager;
+    public CameraManager cameraManager;
     public TMP_Text text;
+
+    public Transform enemyAppertransform;
+
     void Awake()
     {
         Simulation.SetModel(this); // ここで登録

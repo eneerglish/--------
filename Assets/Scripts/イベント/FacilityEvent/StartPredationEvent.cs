@@ -10,11 +10,16 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            var spev = Simulation.Schedule<SpeakEvent>();
-            spev.str = "食べられるーーー";
+
             //facilityは敵
 
             model.workerManager.DestroyWorker(target);
+            Simulation.Clear();
+            enemy.SetTarget(model.workerManager.GetWorker());
+
+            var spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = "食べられるーーー";
+            
         }
     }
 }

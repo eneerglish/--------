@@ -17,4 +17,13 @@ public class WorkerManager : MonoBehaviour
         GameObject workerprefab = Instantiate(prefab);
         workerList.Add(workerprefab);
     }
+
+    public GameObject GetWorker(int num = 0)
+    {
+        if (num >= 0 && num < workerList.Count)
+        {
+            return workerList[num];
+        }
+        return null;
+    }
 }
