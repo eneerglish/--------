@@ -5,6 +5,14 @@ using Platformer.Events;
 using UnityEngine.AI;
 public class Worker : GameAwareBehaviour
 {
+    public enum AnimState
+    {
+        移動_待機 = 0,
+        回転 = 1,
+        食べる = 2
+
+    }
+
     public Animator anim;
     public NavMeshAgent navMesh;
     public WorkerState workerState;
@@ -16,28 +24,31 @@ public class Worker : GameAwareBehaviour
     public int workerID = 0;
     public int sleapValue = 0;//3で寝る　アクション行うたびに+1
 
-    float productionSpeed = 3f;//生産にかかる時間
+    //float productionSpeed = 3f;//生産にかかる時間
 
-    float moveSpeed = 3f;//移動速度
+    //float moveSpeed = 3f;//移動速度
 
-    float sleepDesireUpRate = 10f;//眠くなる速度
-    float sleapDuration = 5f;//睡眠時間
+    //float sleepDesireUpRate = 10f;//眠くなる速度
+    //float sleapDuration = 5f;//睡眠時間
+
+    public int hungerValue = 0; //0~6
     float boaredValue = 0f; //0~1
     float boaredSpead = 5f;
     #endregion
 
     public void InitSet()
     {
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
         workerState = GetComponent<WorkerState>();
         workerEmotion = GetComponent<WorkerEmotion>();
         navMesh = GetComponent<NavMeshAgent>();
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
-        productionSpeed = Random.Range(2f, 5f);
-        moveSpeed = Random.Range(2f, 5f);
-        sleepDesireUpRate = Random.Range(5f, 15f);
-        sleapDuration = Random.Range(3f, 7f);
+        hungerValue = 6;
+        //productionSpeed = Random.Range(2f, 5f);
+        //moveSpeed = Random.Range(2f, 5f);
+        //sleepDesireUpRate = Random.Range(5f, 15f);
+        //sleapDuration = Random.Range(3f, 7f);
     }
 
     public void 仮ChangeState()
@@ -68,25 +79,29 @@ public class Worker : GameAwareBehaviour
     void Start()
     {
         InitSet();
+        workerState.SetMoveStateType(MoveStateType.生産所へ);
     }
     private void Update()
     {
+        float speed = navMesh.velocity.magnitude;
+        anim.SetFloat("speed", speed);
 
         if (workerState.followStateType == FollowStateType.待機 && sleapValue >= 3 && workerState.moveStateType != MoveStateType.家へ)
         {
-                sleapValue = 0;
-                workerState.SetMoveStateType(MoveStateType.家へ);
+            sleapValue = 0;
+            workerState.SetMoveStateType(MoveStateType.家へ);
         }
 
         //暇なとき適当な場所に行くようにしたい
         if (workerState.activeState == ActiveState.FollowStateType && workerState.followStateType == FollowStateType.待機)
         {
             boaredValue += Time.deltaTime / boaredSpead;
+            Debug.Log("boaredValue:" + boaredValue);
             if (boaredValue >= 1f)
             {
                 boaredValue = 0f;
                 MoveStateType newDestination;
-                
+
                 // 現在の目的地と違う場所が選ばれるまで、ランダムな場所の取得を繰り返す
                 do
                 {
@@ -138,6 +153,8 @@ public class Worker : GameAwareBehaviour
                     case MoveStateType.家へ:
                         break;
                     case MoveStateType.牧場へ:
+                        break;
+                    case MoveStateType.食べ物探しへ:
                         break;
                 }
             }

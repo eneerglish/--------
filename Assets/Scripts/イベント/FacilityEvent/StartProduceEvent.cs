@@ -13,7 +13,7 @@ namespace Platformer.Events
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
             spev.str = "生産するぞー";
             Animator anim = target.GetComponent<Animator>();
-            //anim.SetBool("IsProduce", true);
+            anim.SetInteger("ID", (int)Worker.AnimState.食べる);
             for(int i = 1; i <= 5; i++)
             {
                 var ev = Simulation.Schedule<ProduceItemEvent>(i);

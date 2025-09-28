@@ -5,6 +5,7 @@ public class WorkerManager : MonoBehaviour
 {
     public List<GameObject> workerList = new List<GameObject>();
     public GameObject prefab;
+    public Transform playerSpawnPoint;
 
     public void DestroyWorker(GameObject worker)
     {
@@ -14,7 +15,7 @@ public class WorkerManager : MonoBehaviour
 
     public void InstantiateWorker()
     {
-        GameObject workerprefab = Instantiate(prefab);
+        GameObject workerprefab = Instantiate(prefab, playerSpawnPoint.position, Quaternion.identity);
         workerList.Add(workerprefab);
     }
 

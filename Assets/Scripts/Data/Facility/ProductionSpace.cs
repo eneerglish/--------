@@ -27,7 +27,7 @@ public class ProductionSpace : Facility
             productionList.RemoveAt(0);
             human.TakeItem(item);
         }
-        var ev = Simulation.Schedule<MoveEvent>(1);
+        var ev = Simulation.Schedule<MoveEvent>(0.5f);
         ev.target = human.gameObject;
         ev.moveStateType = humanMoveState;
     }

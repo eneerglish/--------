@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22dc3b9d42e15940ab54a0791e380f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 4
+  startstate: 5
   humanMoveState: 0
   feedposlist:
   - {fileID: 4701588072062575722}
@@ -1664,8 +1664,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.68536973, y: 0.5, z: 0.5}
+  m_Center: {x: -0.092684865, y: 0, z: 0}
 --- !u!114 &1475899342200972179
 MonoBehaviour:
   m_ObjectHideFlags: 0

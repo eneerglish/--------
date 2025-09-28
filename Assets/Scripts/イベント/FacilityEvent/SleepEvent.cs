@@ -12,7 +12,7 @@ namespace Platformer.Events
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
             spev.str = "ねむねむzzz";
             Animator anim = target.GetComponent<Animator>();
-            //anim.SetBool("IsSleep", true);
+            anim.SetInteger("ID", (int)Worker.AnimState.食べる);
 
             var ev = Simulation.Schedule<GetUpEvent>(5);
             ev.target = target;
