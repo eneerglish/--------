@@ -23,7 +23,9 @@ public class FarmSpace : Facility
             storage.Add(human.takeItem);
             human.PutItem(starageSpace);
         }
-        human.MoveToOtherPosition(humanMoveState);
+        var ev = Simulation.Schedule<MoveEvent>(1);
+        ev.target = human.gameObject;
+        ev.moveStateType = humanMoveState;
     }
     public GameObject GenerateFood()
     {

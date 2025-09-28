@@ -8,8 +8,7 @@ public class Human : Facility
 {
     public NavMeshAgent navMesh;
     public Animator animator;
-    //Worker用のenumを再利用するというずるしてるかも
-    public MoveStateType curentMoveState = MoveStateType.牧場へ;
+
     [SerializeField]
     private Transform itemPos;
 
@@ -19,34 +18,15 @@ public class Human : Facility
     {
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        MoveFarmOrProduction();
+        var ev = Simulation.Schedule<MoveEvent>(1);
+        ev.target = this.gameObject;
+        ev.moveStateType = MoveStateType.生産所へ;
     }
 
     void Update()
     {
         float speed = navMesh.velocity.magnitude;
         animator.SetFloat("speed", speed);
-    }
-
-    public void MoveToOtherPosition(MoveStateType moveStateType)
-    {
-        navMesh.SetDestination(model.positionManager.GetPosition(moveStateType).position);
-    }
-    void MoveFarmOrProduction()
-    {
-        switch (curentMoveState)
-        {
-            case MoveStateType.牧場へ:
-                curentMoveState = MoveStateType.生産所へ;
-
-                break;
-            case MoveStateType.生産所へ:
-                curentMoveState = MoveStateType.牧場へ;
-                break;
-            default:
-                break;
-        }
-        navMesh.SetDestination(model.positionManager.GetPosition(curentMoveState).position);
     }
 
     public override void DoStartProcess(GameObject target, Facility facility)

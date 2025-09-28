@@ -11,10 +11,8 @@ public class HumanDetectionZone : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("人間kannti");
         if (other.gameObject.CompareTag("人間"))
         {
-            Debug.Log("人間が施設に入りました");
             Human human = other.gameObject.GetComponent<Human>();
             Debug.Log(human);
             parentFacility.HumanStartProcess(human);
