@@ -12,13 +12,18 @@ namespace Platformer.Events
         public override void Execute()
         {
             WorkerEmotion emotions = target.GetComponent<WorkerEmotion>();
+            Worker worker = target.GetComponent<Worker>();
+            if (newState != FollowStateType.待機 && newState != FollowStateType.被捕食 && newState != FollowStateType.睡眠)
+            {
+                worker.sleapValue += 1;
+            }
             switch (newState)
             {
                 case FollowStateType.待機:
-                {
-                    emotions.GetEmotion(EmotionType.喜).value += 0.1f;
-                    break;
-                }
+                    {
+                        emotions.GetEmotion(EmotionType.喜).value += 0.1f;
+                        break;
+                    }
 
                 case FollowStateType.水遊び:
                     {
@@ -27,23 +32,23 @@ namespace Platformer.Events
                         ev.target = target;
                         ev.facility = facility;
                         break;
-                }
+                    }
 
                 case FollowStateType.生産:
-                {
-                    emotions.GetEmotion(EmotionType.喜).value -= 0.2f;
-                    emotions.GetEmotion(EmotionType.怒).value += 0.1f;
-                    var ev = Simulation.Schedule<StartProduceEvent>();
-                    ev.target = target;
-                    ev.facility = facility;
-                    break;
-                }
+                    {
+                        emotions.GetEmotion(EmotionType.喜).value -= 0.2f;
+                        emotions.GetEmotion(EmotionType.怒).value += 0.1f;
+                        var ev = Simulation.Schedule<StartProduceEvent>();
+                        ev.target = target;
+                        ev.facility = facility as ProductionSpace;
+                        break;
+                    }
 
                 case FollowStateType.運搬:
-                {
-                    emotions.GetEmotion(EmotionType.怒).value += 0.1f;
-                    break;
-                }
+                    {
+                        emotions.GetEmotion(EmotionType.怒).value += 0.1f;
+                        break;
+                    }
 
                 case FollowStateType.餌やり:
                     {
@@ -53,32 +58,33 @@ namespace Platformer.Events
                         ev.target = target;
                         ev.facility = facility as FarmSpace;
                         break;
-                }
+                    }
 
                 case FollowStateType.睡眠:
-                {
-                    emotions.GetEmotion(EmotionType.喜).value += 0.1f;
-                    var ev = Simulation.Schedule<SleepEvent>();
-                    ev.target = target;
+                    {
+                        emotions.GetEmotion(EmotionType.喜).value += 0.1f;
+                        var ev = Simulation.Schedule<SleepEvent>();
+                        ev.target = target;
                         ev.facility = facility;
-                    break;
-                }
+                        break;
+
+                    }
                 case FollowStateType.暴走:
-                {
-                    emotions.GetEmotion(EmotionType.怒).value -= 0.1f;
-                    emotions.GetEmotion(EmotionType.喜).value -= 0.05f;
-                    var ev = Simulation.Schedule<StartRampageEvent>();
-                    ev.target = target;
-                    break;
-                }
-                
+                    {
+                        emotions.GetEmotion(EmotionType.怒).value -= 0.1f;
+                        emotions.GetEmotion(EmotionType.喜).value -= 0.05f;
+                        var ev = Simulation.Schedule<StartRampageEvent>();
+                        ev.target = target;
+                        break;
+                    }
+
                 case FollowStateType.被捕食:
                     {
                         var ev = Simulation.Schedule<StartPredationEvent>();
                         ev.target = target;
                         ev.enemy = facility as Enemy;
                         break;
-                }
+                    }
             }
         }
     }

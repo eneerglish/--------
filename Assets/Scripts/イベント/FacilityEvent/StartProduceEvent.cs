@@ -6,7 +6,7 @@ namespace Platformer.Events
     public class StartProduceEvent : Simulation.Event<StartProduceEvent>
     {
         public GameObject target;
-        public Facility facility;
+        public ProductionSpace facility;
 
         public override void Execute()
         {
@@ -14,9 +14,16 @@ namespace Platformer.Events
             spev.str = "生産するぞー";
             Animator anim = target.GetComponent<Animator>();
             //anim.SetBool("IsProduce", true);
-            var ev = Simulation.Schedule<StopProduceEvent>(5);
-            ev.target = target;
-            ev.facility = facility as ProductionSpace;
+            for(int i = 1; i <= 5; i++)
+            {
+                var ev = Simulation.Schedule<ProduceItemEvent>(i);
+                ev.facility = facility;
+            }
+            {
+                var ev = Simulation.Schedule<StopProduceEvent>(5);
+                ev.target = target;
+                ev.facility = facility as ProductionSpace;
+            }
         }
     }
 }

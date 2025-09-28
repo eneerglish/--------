@@ -9,8 +9,6 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
-            spev.str = "餌やったぞ";
 
             target.GetComponent<WorkerState>().ChangeFollowState(FollowStateType.待機);
         }

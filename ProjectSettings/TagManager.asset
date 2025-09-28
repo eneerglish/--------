@@ -7,6 +7,7 @@ TagManager:
   - "\u751F\u7523\u30B9\u30DA\u30FC\u30B9"
   - "\u751F\u7523\u7269"
   - "\u30EF\u30FC\u30AB\u30FC"
+  - "\u4EBA\u9593"
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - DeadZone
   - 
   - 
   - 

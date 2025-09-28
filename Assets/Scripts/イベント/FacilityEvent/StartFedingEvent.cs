@@ -10,18 +10,32 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
-            spev.str = "えさやるぞー";
-
-            for (int i = 0; i < 5; i++)
+            int foodcount = facility.storage.Count;
+            if(foodcount <= 0)
             {
-                var foodev = Simulation.Schedule<ThrowingFood>(0.5f * i);
-                foodev.target = target;
-                foodev.facility = facility;
+                SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+                spev.str = "えさがないよー";
+                var ev = Simulation.Schedule<FinishFedingEvent>(2);
+                ev.target = target;
+                return;
+            }
+            else
+            {
+                SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+                spev.str = "えさやるぞー";
             }
 
-            var ev = Simulation.Schedule<FinishFedingEvent>(5);
-            ev.target = target;
+            int feedCount = Mathf.Min(5, foodcount);
+            for (int i = 0; i < feedCount; i++)
+            {
+                var ev = Simulation.Schedule<WorkerFeeding>(i);
+                ev.target = target;
+                ev.facility = facility;
+            }
+            {
+                var ev = Simulation.Schedule<FinishFedingEvent>(5);
+                ev.target = target;
+            }
         }
     }
 }

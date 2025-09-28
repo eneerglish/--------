@@ -13,7 +13,7 @@ namespace Platformer.Events
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
             spev.str = $"{moveStateType}行くぞ";
             NavMeshAgent navMesh = target.GetComponent<Worker>().navMesh;
-            navMesh.SetDestination(model.positionManager.posList[(int)moveStateType].position);
+            navMesh.SetDestination(model.positionManager.GetPosition(moveStateType).position);
         }
     }
 }

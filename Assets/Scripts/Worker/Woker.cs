@@ -13,8 +13,8 @@ public class Worker : GameAwareBehaviour
 
     #region Data
     public string workerName = "Worker";
-    public int workerID = 0; 
-    float sleapValue = 0f; //0~1
+    public int workerID = 0;
+    public int sleapValue = 0;//3で寝る　アクション行うたびに+1
 
     float productionSpeed = 3f;//生産にかかる時間
 
@@ -53,6 +53,18 @@ public class Worker : GameAwareBehaviour
         workerState.SetMoveStateType(MoveStateType.生産所へ);
     }
 
+    public MoveStateType GetRandomDestination()
+    {
+        List<MoveStateType> destinations = new List<MoveStateType>()
+        {
+            MoveStateType.生産所へ,
+            //MoveStateType.水辺へ,
+            MoveStateType.牧場へ
+        };
+        int randomIndex = Random.Range(0, destinations.Count);
+        return destinations[randomIndex];
+    }
+
     void Start()
     {
         InitSet();
@@ -60,14 +72,10 @@ public class Worker : GameAwareBehaviour
     private void Update()
     {
 
-        if (workerState.followStateType != FollowStateType.睡眠)
+        if (workerState.followStateType == FollowStateType.待機 && sleapValue >= 3 && workerState.moveStateType != MoveStateType.家へ)
         {
-            sleapValue += Time.deltaTime / sleepDesireUpRate;
-            if (sleapValue >= 1f && workerState.moveStateType != MoveStateType.家へ)
-            {
-                sleapValue = 0f;
+                sleapValue = 0;
                 workerState.SetMoveStateType(MoveStateType.家へ);
-            }
         }
 
         //暇なとき適当な場所に行くようにしたい
@@ -77,15 +85,16 @@ public class Worker : GameAwareBehaviour
             if (boaredValue >= 1f)
             {
                 boaredValue = 0f;
+                MoveStateType newDestination;
+                
+                // 現在の目的地と違う場所が選ばれるまで、ランダムな場所の取得を繰り返す
+                do
+                {
+                    newDestination = GetRandomDestination();
+                } while (newDestination == workerState.moveStateType);
 
-                /*MoveStateType[] destinations = {
-                    MoveStateType.牧場へ,
-                    MoveStateType.水辺へ
-                };
 
-                int randomIndex = Random.Range(0, destinations.Length);*/
-
-                workerState.SetMoveStateType(MoveStateType.牧場へ);
+                workerState.SetMoveStateType(newDestination);
             }
         }
 
@@ -113,7 +122,6 @@ public class Worker : GameAwareBehaviour
                         workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
                         break;
                     case FollowStateType.暴走:
-                        sleapValue += Time.deltaTime / (sleepDesireUpRate / 2);
                         workerEmotion.GetEmotion(EmotionType.喜).value += Time.deltaTime / 100f;
                         workerEmotion.GetEmotion(EmotionType.怒).value -= Time.deltaTime / 200f;
                         break;
@@ -169,8 +177,8 @@ public class Worker : GameAwareBehaviour
                 case EmotionType.楽:
                     if (workerState.activeState == ActiveState.FollowStateType)
                     {
-                        Debug.Log("働きたくなってきたー！");
-                        workerState.SetMoveStateType(MoveStateType.生産所へ);
+                        //Debug.Log("働きたくなってきたー！");
+                        //workerState.SetMoveStateType(MoveStateType.生産所へ);
                     }
 
                     break;
