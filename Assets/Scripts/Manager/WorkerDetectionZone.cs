@@ -12,7 +12,7 @@ public class WorkerDetectionZone : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("ワーカー"))
+        if (other.gameObject.CompareTag("Worker"))
         {
             GameObject otherObject = other.gameObject;
             parentFacility.DoStartProcess(otherObject, parentFacility);

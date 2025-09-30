@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 7132178986962660274}
   m_Layer: 0
   m_Name: "\u4EBA\u9593"
-  m_TagString: "\u4EBA\u9593"
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

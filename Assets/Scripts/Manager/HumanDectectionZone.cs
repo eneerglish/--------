@@ -11,7 +11,7 @@ public class HumanDetectionZone : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("人間"))
+        if (other.gameObject.CompareTag("Human"))
         {
             Human human = other.gameObject.GetComponent<Human>();
             Debug.Log(human);

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3471935694674819486}
   m_Layer: 7
   m_Name: "\u30EF\u30FC\u30AB\u30FC"
-  m_TagString: "\u30EF\u30FC\u30AB\u30FC"
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +59,8 @@ MonoBehaviour:
   workerName: Worker
   workerID: 0
   sleapValue: 0
+  lifeTime: 0
+  lifeValue: 0
   hungerValue: 0
 --- !u!114 &5022535829827902687
 MonoBehaviour:
