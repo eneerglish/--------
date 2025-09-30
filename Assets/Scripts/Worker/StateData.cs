@@ -16,7 +16,8 @@ public enum FollowStateType
     餌やり,
     睡眠,
     暴走,
-    被捕食
+    被捕食,
+    死亡
 }
 
 public enum MoveStateType

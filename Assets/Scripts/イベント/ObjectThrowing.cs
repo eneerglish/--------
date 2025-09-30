@@ -32,15 +32,25 @@ namespace Platformer.Events
             if (throwObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.linearVelocity = Vector3.zero;
+                rb.useGravity = false;
             }
 
 
             // --- DOTweenを実行 ---
             throwObject.transform.DOPath(
-                path, 
-                2, 
+                path,
+                2,
                 PathType.CatmullRom // 滑らかな曲線を描くためのパスタイプ
-            ).SetEase(Ease.Linear); 
+            ).SetEase(Ease.Linear)
+            .OnComplete(() => {
+                // 2. アニメーション完了後、重力を再度有効にする
+                if (throwObject.TryGetComponent<Rigidbody>(out var rb))
+                    {
+                        rb.linearVelocity = Vector3.zero;
+                        rb.useGravity = true;
+                    }
+                    
+                }); 
         }
     }
 }

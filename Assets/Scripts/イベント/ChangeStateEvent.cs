@@ -85,6 +85,14 @@ namespace Platformer.Events
                         ev.enemy = facility as Enemy;
                         break;
                     }
+                case FollowStateType.死亡:
+                    {
+                        var spev = Simulation.Schedule<SpeakEvent>();
+                        spev.str = "ぐえーしんだンゴーｗ";
+                        var ev = Simulation.Schedule<DeadPlayer>();
+                        ev.target = target;
+                        break;
+                    }
             }
         }
     }

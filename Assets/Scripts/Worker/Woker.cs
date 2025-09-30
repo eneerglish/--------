@@ -9,7 +9,9 @@ public class Worker : GameAwareBehaviour
     {
         移動_待機 = 0,
         回転 = 1,
-        食べる = 2
+        食べる = 2,
+        死亡 = 3,
+        なんか = 4
 
     }
 
@@ -23,6 +25,8 @@ public class Worker : GameAwareBehaviour
     public string workerName = "Worker";
     public int workerID = 0;
     public int sleapValue = 0;//3で寝る　アクション行うたびに+1
+    public int lifeTime = 0; //秒数
+    public float lifeValue = 0; //lifeTimeまでの経過時間
 
     //float productionSpeed = 3f;//生産にかかる時間
 
@@ -45,6 +49,8 @@ public class Worker : GameAwareBehaviour
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
+        lifeTime = 60;
+        lifeValue = 0;
         //productionSpeed = Random.Range(2f, 5f);
         //moveSpeed = Random.Range(2f, 5f);
         //sleepDesireUpRate = Random.Range(5f, 15f);
@@ -83,9 +89,24 @@ public class Worker : GameAwareBehaviour
     }
     private void Update()
     {
+        //死亡状態の時はなにもしない
+        if (workerState.followStateType == FollowStateType.死亡)
+        {
+            return;
+        }
+
+        //アニメーションの更新
         float speed = navMesh.velocity.magnitude;
         anim.SetFloat("speed", speed);
 
+        //寿命のカウント
+        lifeValue += Time.deltaTime;
+        if (lifeValue >= lifeTime)
+        {
+            workerState.ChangeFollowState(FollowStateType.死亡);
+        }
+
+        //眠かったら家へ
         if (workerState.followStateType == FollowStateType.待機 && sleapValue >= 3 && workerState.moveStateType != MoveStateType.家へ)
         {
             sleapValue = 0;
