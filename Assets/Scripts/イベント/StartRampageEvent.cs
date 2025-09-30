@@ -16,8 +16,8 @@ namespace Platformer.Events
             
             model.effectManager.InstantiateEffect(0, target.transform, 2);
 
-            //タスク全消失
-            Simulation.Clear();
+            //タスク全消失してしまうので今後それぞれに対応したものだけ消すようにする
+            //Simulation.Clear();
 
             var ev = Simulation.Schedule<StopRampageEvent>(2);
             ev.target = target;

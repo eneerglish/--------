@@ -6,7 +6,12 @@ public class Test : GameAwareBehaviour
     void Start()
     {
         model.workerManager.InstantiateWorker();
-        //var ev = Simulation.Schedule<ApeerEnemyEvent>(30);
-        //ev.transform = model.enemyAppertransform;
+        //GeneEnemy(30);
+    }
+
+    public void GeneEnemy(int time = 0)
+    {
+        var ev = Simulation.Schedule<ApeerEnemyEvent>(time);
+        ev.transform = model.enemyAppertransform;
     }
 }
