@@ -51,10 +51,10 @@ public class Enemy : Facility
             });
     }
 
-    public override void DoStartProcess(GameObject target, Facility facility)
+    /*public override void DoStartProcess(GameObject target, Facility facility)
     {
         target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
-    }
+    }*/
 
     public void SetTarget(GameObject target)
     {

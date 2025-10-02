@@ -29,10 +29,10 @@ public class Human : Facility
         animator.SetFloat("speed", speed);
     }
 
-    public override void DoStartProcess(GameObject target, Facility facility)
+    /*public override void DoStartProcess(GameObject target, Facility facility)
     {
         target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
-    }
+    }*/
 
     public void TakeItem(GameObject item)
     {

@@ -7,11 +7,10 @@ public class Worker : GameAwareBehaviour
 {
     public enum AnimState
     {
-        移動_待機 = 0,
-        回転 = 1,
-        食べる = 2,
-        死亡 = 3,
-        なんか = 4
+        Move = 0,
+        Action = 1,
+        Rotation = 2,
+        Death = 3
 
     }
 
@@ -20,6 +19,7 @@ public class Worker : GameAwareBehaviour
     public WorkerState workerState;
     public WorkerEmotion workerEmotion;
     public GameObject facility;
+    AnimatorOverrideController animatorOverrideController;
 
     #region Data
     public string workerName = "Worker";
@@ -46,6 +46,8 @@ public class Worker : GameAwareBehaviour
         workerState = GetComponent<WorkerState>();
         workerEmotion = GetComponent<WorkerEmotion>();
         navMesh = GetComponent<NavMeshAgent>();
+        animatorOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        anim.runtimeAnimatorController = animatorOverrideController;
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
@@ -55,19 +57,6 @@ public class Worker : GameAwareBehaviour
         //moveSpeed = Random.Range(2f, 5f);
         //sleepDesireUpRate = Random.Range(5f, 15f);
         //sleapDuration = Random.Range(3f, 7f);
-    }
-
-    public void 仮ChangeState()
-    {
-        if (workerState.followStateType == FollowStateType.待機)
-        {
-            workerState.ChangeFollowState(FollowStateType.生産);
-        }
-    }
-
-    public void 仮move()
-    {
-        workerState.SetMoveStateType(MoveStateType.生産所へ);
     }
 
     public MoveStateType GetRandomDestination()

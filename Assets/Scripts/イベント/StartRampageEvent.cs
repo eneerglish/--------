@@ -12,7 +12,7 @@ namespace Platformer.Events
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
             spev.str = "おりゃあああああああ";
             Animator anim = target.GetComponent<Worker>().anim;
-            anim.SetInteger("ID", (int)Worker.AnimState.回転);
+            //anim.SetInteger("ID", (int)Worker.AnimState.回転);
             
             model.effectManager.InstantiateEffect(0, target.transform, 2);
 

@@ -10,7 +10,7 @@ namespace Platformer.Events
         public override void Execute()
         {
             Worker worker = target.GetComponent<Worker>();
-            worker.anim.SetInteger("ID", (int)Worker.AnimState.死亡);
+            //worker.anim.SetInteger("ID", (int)Worker.AnimState.死亡);
             worker.navMesh.velocity = Vector3.zero;
             worker.navMesh.enabled = false;
 

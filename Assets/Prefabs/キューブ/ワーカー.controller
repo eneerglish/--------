@@ -114,7 +114,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u98DF\u3079\u308B"
+  m_Name: "\u30A2\u30AF\u30B7\u30E7\u30F3"
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -127,7 +127,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 616ff74d718ad4043b090511a63e8a77, type: 2}
+  m_Motion: {fileID: 7400000, guid: 241584d0284e08c45a79d134e3950df0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -280,10 +280,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -2929158133693672723}
-    m_Position: {x: 330, y: 240, z: 0}
+    m_Position: {x: 340, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1787524642664852362}
-    m_Position: {x: 330, y: 310, z: 0}
+    m_Position: {x: 330, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -407733331901173604}
     m_Position: {x: 330, y: 160, z: 0}

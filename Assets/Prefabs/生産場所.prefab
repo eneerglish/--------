@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fa00e9a780136459f1ff04248f6d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 2
-  humanMoveState: 3
+  <actionData>k__BackingField: {fileID: 11400000, guid: 263bade5624e85945a38cc4a4357862a, type: 2}
+  <humanMoveState>k__BackingField: 0
   spawnPoint: {fileID: 0}
   jumpForce: 5
   productionList: []

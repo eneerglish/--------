@@ -11,10 +11,10 @@ public class FarmSpace : Facility
     public List<GameObject> storage = new List<GameObject>();
     public Transform starageSpace;
 
-    public override void DoStartProcess(GameObject target, Facility facility)
+    /*public override void DoStartProcess(GameObject target, Facility facility)
     {
         target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
-    }
+    }*/
 
     public override void HumanStartProcess(Human human)
     {

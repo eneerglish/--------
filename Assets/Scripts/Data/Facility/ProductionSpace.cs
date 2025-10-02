@@ -14,7 +14,7 @@ public class ProductionSpace : Facility
         spawnPoint = this.transform;
     }
 
-    public override void DoStartProcess(GameObject target, Facility facility )
+    /*public override void DoStartProcess(GameObject target, Facility facility )
     {
         target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
     }
@@ -30,7 +30,7 @@ public class ProductionSpace : Facility
         var ev = Simulation.Schedule<MoveEvent>(0.5f);
         ev.target = human.gameObject;
         ev.moveStateType = humanMoveState;
-    }
+    }*/
     public void ProduceItem()
     {
         GameObject prefab = model.productionList.GetProduction();

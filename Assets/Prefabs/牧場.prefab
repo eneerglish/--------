@@ -1349,8 +1349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22dc3b9d42e15940ab54a0791e380f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 5
-  humanMoveState: 0
+  <actionData>k__BackingField: {fileID: 11400000, guid: 6d583fd4a67976e4e836cf5bb16209f5, type: 2}
+  <humanMoveState>k__BackingField: 0
   feedposlist:
   - {fileID: 4701588072062575722}
   - {fileID: 512656610149684549}

@@ -3,20 +3,19 @@ using Platformer.Core;
 
 namespace Platformer.Events
 {
-    public class SleepEvent : Simulation.Event<SleepEvent>
+    public class StartFacilityEvent : Simulation.Event<StartFacilityEvent>
     {
         public GameObject target;
-        public Facility facility;
+        public ActionData actionData;
         public override void Execute()
         {
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
-            spev.str = "ねむねむzzz";
+            spev.str = actionData.actionText;
             Animator anim = target.GetComponent<Animator>();
             //anim.SetInteger("ID", (int)Worker.AnimState.食べる);
 
             var ev = Simulation.Schedule<GetUpEvent>(5);
             ev.target = target;
-            ev.facility = facility as HomeSpace;
         }
     }
 }
