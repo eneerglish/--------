@@ -1349,7 +1349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22dc3b9d42e15940ab54a0791e380f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <actionData>k__BackingField: {fileID: 11400000, guid: 6d583fd4a67976e4e836cf5bb16209f5, type: 2}
+  actionData:
+  - {fileID: 11400000, guid: 6d583fd4a67976e4e836cf5bb16209f5, type: 2}
+  - {fileID: 11400000, guid: 23ed8849321a5d4448bdbe5e872cdb49, type: 2}
   <humanMoveState>k__BackingField: 0
   feedposlist:
   - {fileID: 4701588072062575722}
@@ -1360,7 +1362,7 @@ MonoBehaviour:
   foodPrefab:
   - {fileID: 840947771615704260, guid: 84a7905533b40c04b99fb7e428304536, type: 3}
   storage: []
-  starageSpace: {fileID: 4436982264150022131}
+  storageSpace: {fileID: 4436982264150022131}
 --- !u!1 &3957846356376221203
 GameObject:
   m_ObjectHideFlags: 0

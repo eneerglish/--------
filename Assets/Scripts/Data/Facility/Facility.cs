@@ -5,22 +5,30 @@ using UnityEngine;
 using Platformer.Events;
 public abstract class Facility : GameAwareBehaviour
 {
-
-    //ほんとはEventScriptを直接設定したいが、できないので列挙型で設定する
-    [Header("イベント設定")]
     [field: SerializeField]
-    protected ActionData actionData{ get; private set; }
+    protected List<ActionData> actionData = new List<ActionData>();
 
-    [Header("人間用")]
     [field: SerializeField]
-    protected MoveStateType humanMoveState{get; private set; }
+    protected MoveStateType humanMoveState { get; private set; }
 
     //ワーカーが施設に入ってきたとき行いたいことを書く
-    //public abstract void DoStartProcess(GameObject target, Facility facility);
+    public virtual void DoStartProcess(GameObject target)
+    {
+        var ev = Simulation.Schedule<ChangeStateEvent>();
+        ev.target = target;
+        ev.newState = actionData[0].followStateType;
+        ev.actionData = actionData[0];
+
+    }
 
     public virtual void HumanStartProcess(Human human)
     {
         //人間が施設に入ってきたとき行いたいことを書く
+    }
+
+    public ActionData GetActionData(int i = 0)
+    {
+        return actionData[i];
     }
 
 }

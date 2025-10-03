@@ -26,13 +26,4 @@ public class WorkerState : GameAwareBehaviour
         ev.target = this.gameObject;
         ev.moveStateType = state;
     }
-
-    public void ChangeFollowState(FollowStateType state, Facility facility = null)
-    {
-        var ev = Simulation.Schedule<ChangeStateEvent>();
-        ev.target = this.gameObject;
-        ev.newState = state;
-        ev.facility = facility;
-        SetFollowStateType(state);
-    }
 }

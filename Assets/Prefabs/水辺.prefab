@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb4ab003f497ec41ac73a18fdab6721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 1
-  humanMoveState: 0
+  actionData:
+  - {fileID: 11400000, guid: 5cdd012b9b20a3747bcec257fbc043bc, type: 2}
+  <humanMoveState>k__BackingField: 0
 --- !u!1 &4189058265414989225
 GameObject:
   m_ObjectHideFlags: 0

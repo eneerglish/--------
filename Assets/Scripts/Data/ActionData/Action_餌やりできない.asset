@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0652e5a5bd51a6742843d3d85b37b4de, type: 3}
-  m_Name: "Action_\u6C34\u904A\u3073"
+  m_Name: "Action_\u990C\u3084\u308A\u3067\u304D\u306A\u3044"
   m_EditorClassIdentifier: 
   <animClip>k__BackingField: {fileID: 7400000, guid: 616ff74d718ad4043b090511a63e8a77, type: 2}
-  <startActionText>k__BackingField: "\u3042\u305D\u3076\u305E"
-  <finishActionText>k__BackingField: "\u3042\u305D\u3093\u3060"
-  <followStateType>k__BackingField: 1
-  <actionTime>k__BackingField: 5
+  <startActionText>k__BackingField: "\u3042\u308C"
+  <finishActionText>k__BackingField: "\u3048\u3055\u306A\u3044\u3088"
+  <followStateType>k__BackingField: 5
+  <actionTime>k__BackingField: 1
   emotionModifiers:
-  - emotionType: 0
-    value: 0.1
   - emotionType: 1
-    value: -0.1
+    value: 0.1

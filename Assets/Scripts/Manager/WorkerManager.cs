@@ -7,6 +7,8 @@ public class WorkerManager : MonoBehaviour
     public GameObject prefab;
     public Transform playerSpawnPoint;
 
+    public List<ActionData> actionDataList = new List<ActionData>();
+
     public void DestroyWorker(GameObject worker)
     {
         workerList.Remove(worker);
@@ -24,6 +26,18 @@ public class WorkerManager : MonoBehaviour
         if (num >= 0 && num < workerList.Count)
         {
             return workerList[num];
+        }
+        return null;
+    }
+
+    public ActionData GetActionData(FollowStateType stateType)
+    {
+        foreach (var actionData in actionDataList)
+        {
+            if (actionData.followStateType == stateType)
+            {
+                return actionData;
+            }
         }
         return null;
     }

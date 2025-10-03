@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6793012764578171684}
-  - component: {fileID: 5128590116194737867}
+  - component: {fileID: 3772266744499751206}
   m_Layer: 0
   m_Name: "\u751F\u7523\u5834\u6240"
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Transform:
   - {fileID: 7307404219629539976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5128590116194737867
+--- !u!114 &3772266744499751206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,8 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7fa00e9a780136459f1ff04248f6d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <actionData>k__BackingField: {fileID: 11400000, guid: 263bade5624e85945a38cc4a4357862a, type: 2}
-  <humanMoveState>k__BackingField: 0
+  actionData:
+  - {fileID: 11400000, guid: 263bade5624e85945a38cc4a4357862a, type: 2}
+  <humanMoveState>k__BackingField: 3
   spawnPoint: {fileID: 0}
   jumpForce: 5
   productionList: []

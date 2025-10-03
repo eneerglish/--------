@@ -9,19 +9,37 @@ public class FarmSpace : Facility
     public List<Transform> feedposlist = new List<Transform>();
     public List<GameObject> foodPrefab = new List<GameObject>();
     public List<GameObject> storage = new List<GameObject>();
-    public Transform starageSpace;
+    public Transform storageSpace;
 
-    /*public override void DoStartProcess(GameObject target, Facility facility)
+    public override void DoStartProcess(GameObject target)
     {
-        target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
-    }*/
+        int feedCount = Mathf.Min(5, storage.Count);
+        if (feedCount <= 0)
+        {
+            var ev = Simulation.Schedule<ChangeStateEvent>();
+            ev.target = target;
+            ev.newState = GetActionData(1).followStateType;
+            ev.actionData = GetActionData(1);
+            return;
+        }
+
+        base.DoStartProcess(target);
+
+        for (int i = 0; i < feedCount; i++)
+        {
+            var ev = Simulation.Schedule<WorkerFeeding>(i);
+            ev.target = target;
+            ev.facility = this;
+        }
+    }
+
 
     public override void HumanStartProcess(Human human)
     {
         if (human.CheckHaveItem())
         {
             storage.Add(human.takeItem);
-            human.PutItem(starageSpace);
+            human.PutItem(storageSpace);
         }
         var ev = Simulation.Schedule<MoveEvent>(1);
         ev.target = human.gameObject;

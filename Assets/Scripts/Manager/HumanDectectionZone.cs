@@ -14,7 +14,6 @@ public class HumanDetectionZone : MonoBehaviour
         if (other.gameObject.CompareTag("Human"))
         {
             Human human = other.gameObject.GetComponent<Human>();
-            Debug.Log(human);
             parentFacility.HumanStartProcess(human);
         }
 

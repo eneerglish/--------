@@ -9,12 +9,20 @@ namespace Platformer.Events
         public GameObject target;
         public override void Execute()
         {
-            Worker worker = target.GetComponent<Worker>();
-            //worker.anim.SetInteger("ID", (int)Worker.AnimState.死亡);
-            worker.navMesh.velocity = Vector3.zero;
-            worker.navMesh.enabled = false;
-
+            //タスク全消失
             Simulation.Clear();
+
+            var spev = Simulation.Schedule<SpeakEvent>();
+            spev.str = "ぐえーしんだンゴーｗ";
+
+            //移動を中止
+            NavMeshAgent navMesh = target.GetComponent<NavMeshAgent>();
+            navMesh.velocity = Vector3.zero;
+            navMesh.enabled = false;
+
+            //死亡アニメーション開始
+            AnimatorController animatorController = target.GetComponent<AnimatorController>();
+            animatorController.ChangeAnimState((int)Worker.AnimState.Death);
         }
     }
 }

@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: "Action_\u751F\u7523"
   m_EditorClassIdentifier: 
   <animClip>k__BackingField: {fileID: 7400000, guid: 616ff74d718ad4043b090511a63e8a77, type: 2}
-  <actionSpeak>k__BackingField: "\u751F\u7523\u3059\u308B\u305E\u30FC"
+  <startActionText>k__BackingField: "\u751F\u7523\u3059\u308B\u305E"
+  <finishActionText>k__BackingField: "\u9811\u5F35\u3063\u305F"
   <followStateType>k__BackingField: 2
+  <actionTime>k__BackingField: 5
+  emotionModifiers:
+  - emotionType: 1
+    value: 0.2
+  - emotionType: 0
+    value: -0.1

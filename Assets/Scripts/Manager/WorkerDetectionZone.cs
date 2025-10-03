@@ -15,7 +15,7 @@ public class WorkerDetectionZone : MonoBehaviour
         if (other.gameObject.CompareTag("Worker"))
         {
             GameObject otherObject = other.gameObject;
-            //parentFacility.DoStartProcess(otherObject, parentFacility);
+            parentFacility.DoStartProcess(otherObject);
         }
 
     }
