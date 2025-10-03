@@ -229,8 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4427994e9b9e140bb82407b9be7571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 8
-  humanMoveState: 0
+  actionData:
+  - {fileID: 11400000, guid: f6d6b3e4ac280d743b4298b56ba41aa2, type: 2}
+  <humanMoveState>k__BackingField: 0
   navMesh: {fileID: 0}
   animator: {fileID: 0}
 --- !u!195 &7211983995030440325
