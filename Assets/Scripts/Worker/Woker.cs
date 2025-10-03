@@ -51,7 +51,7 @@ public class Worker : GameAwareBehaviour
         List<MoveStateType> destinations = new List<MoveStateType>()
         {
             MoveStateType.生産所へ,
-            //MoveStateType.水辺へ,
+            MoveStateType.水辺へ,
             MoveStateType.牧場へ
         };
         int randomIndex = Random.Range(0, destinations.Count);
