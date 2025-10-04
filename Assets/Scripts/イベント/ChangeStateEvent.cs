@@ -29,7 +29,8 @@ namespace Platformer.Events
 
 
             //疲労値の増加　基本増加
-            if (newState != FollowStateType.待機 && newState != FollowStateType.被捕食 && newState != FollowStateType.睡眠)
+            if (newState != FollowStateType.待機 && newState != FollowStateType.被捕食 && newState != FollowStateType.睡眠
+                && newState != FollowStateType.スポーン)
             {
                 worker.sleapValue += 1;
             }

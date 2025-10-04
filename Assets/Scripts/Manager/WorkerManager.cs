@@ -15,10 +15,15 @@ public class WorkerManager : MonoBehaviour
         Destroy(worker);
     }
 
-    public void InstantiateWorker()
+    public GameObject InstantiateWorker(Transform transform = null)
     {
-        GameObject workerprefab = Instantiate(prefab, playerSpawnPoint.position, Quaternion.identity);
+        if (transform == null)
+        {
+            transform = playerSpawnPoint;
+        }
+        GameObject workerprefab = Instantiate(prefab, transform.position, Quaternion.identity);
         workerList.Add(workerprefab);
+        return workerprefab;
     }
 
     public GameObject GetWorker(int num = 0)

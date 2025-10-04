@@ -1,6 +1,7 @@
 using UnityEngine;
 using Platformer.Core;
 using DG.Tweening;
+using UnityEngine.AI;
 
 namespace Platformer.Events
 {
@@ -29,10 +30,16 @@ namespace Platformer.Events
             // ウェイポイントの配列を作成
             Vector3[] path = { peakPosition, targetPos };
             throwObject.transform.position = startPos;
+
+            //投げる前に色々無効化
             if (throwObject.TryGetComponent<Rigidbody>(out var rb))
             {
                 rb.linearVelocity = Vector3.zero;
                 rb.useGravity = false;
+            }
+            if (throwObject.TryGetComponent<UnityEngine.AI.NavMeshAgent>(out var navMesh))
+            {
+                navMesh.enabled = false;
             }
 
 
@@ -49,7 +56,11 @@ namespace Platformer.Events
                         rb.linearVelocity = Vector3.zero;
                         rb.useGravity = true;
                     }
-                    
+                //NavMeshも
+                if (throwObject.TryGetComponent<NavMeshAgent>(out var navMesh))
+                {
+                    navMesh.enabled = true;
+                }
                 }); 
         }
     }

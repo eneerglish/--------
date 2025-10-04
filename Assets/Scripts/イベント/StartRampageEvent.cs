@@ -9,7 +9,8 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            Simulation.Clear();
+            //そのワーカーだけのタスクを消すようにしたい
+            //Simulation.Clear();
 
             SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
             spev.str = "おりゃあああああああ";

@@ -13,13 +13,14 @@ public class WorkerAI : MonoBehaviour
         worker = GetComponent<Worker>();
         workerState = GetComponent<WorkerState>();
         workerEmotion = GetComponent<WorkerEmotion>();
-        workerState.SetMoveStateType(MoveStateType.生産所へ);
+        workerState.SetFollowStateType(FollowStateType.スポーン);
     }
 
     void Update()
     {
-        // 死亡状態の時は何もしない
-        if (workerState.followStateType == FollowStateType.死亡) return;
+        // 死亡状態とスポーンの時は何もしない
+        if (workerState.followStateType == FollowStateType.死亡
+            || workerState.followStateType == FollowStateType.スポーン) return;
 
         if (workerState.followStateType != FollowStateType.死亡)
         {

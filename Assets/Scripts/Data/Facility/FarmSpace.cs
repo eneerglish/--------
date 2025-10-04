@@ -9,8 +9,18 @@ public class FarmSpace : Facility
     public List<Transform> feedposlist = new List<Transform>();
     public List<GameObject> foodPrefab = new List<GameObject>();
     public List<GameObject> storage = new List<GameObject>();
-    public List<Pet> petList = new List<Pet>();
     public Transform storageSpace;
+
+    //新しいキューブを生み出すシステムを考えたい
+    public List<Pet> petList = new List<Pet>();
+
+    void Start()
+    {
+        foreach (Pet pet in petList)
+        {
+            pet.SetMoveList(feedposlist);
+        }
+    }
 
     public override void DoStartProcess(GameObject target)
     {
@@ -65,4 +75,5 @@ public class FarmSpace : Facility
         storage.RemoveAt(0);
         return food;
     }
+
 }

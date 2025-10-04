@@ -5,7 +5,12 @@ public class Test : GameAwareBehaviour
 {
     void Start()
     {
-        model.workerManager.InstantiateWorker();
+        for (int i = 0; i < 2; i++)
+        {
+            var ev = Simulation.Schedule<SpawnWorker>();
+            ev.startPos = model.workerManager.playerSpawnPoint;
+        }
+
         //GeneEnemy(30);
     }
 

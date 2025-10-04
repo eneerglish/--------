@@ -9,8 +9,8 @@ namespace Platformer.Events
         public GameObject target;
         public override void Execute()
         {
-            //タスク全消失
-            Simulation.Clear();
+            //これではタスク全消失してしまう
+            //Simulation.Clear();
 
             var spev = Simulation.Schedule<SpeakEvent>();
             spev.str = "ぐえーしんだンゴーｗ";
