@@ -38,7 +38,7 @@ public class Worker : GameAwareBehaviour
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
-        lifeTime =60;
+        lifeTime =120;
         lifeValue = 0;
         //productionSpeed = Random.Range(2f, 5f);
         //moveSpeed = Random.Range(2f, 5f);

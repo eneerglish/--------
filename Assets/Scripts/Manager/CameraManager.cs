@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections.Generic; // Listを使うために必要
+using System.Collections.Generic;
 
 public class CameraManager : MonoBehaviour
 {

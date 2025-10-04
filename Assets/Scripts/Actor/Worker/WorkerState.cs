@@ -24,6 +24,6 @@ public class WorkerState : GameAwareBehaviour
         SetActiveState(ActiveState.MoveStateType);
         var ev = Simulation.Schedule<MoveEvent>();
         ev.target = this.gameObject;
-        ev.moveStateType = state;
+        ev.transform = model.positionManager.GetPosition(state);
     }
 }

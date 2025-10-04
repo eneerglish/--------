@@ -20,3 +20,5 @@ MonoBehaviour:
   emotionModifiers:
   - emotionType: 1
     value: -0.1
+  - emotionType: 0
+    value: 0.2

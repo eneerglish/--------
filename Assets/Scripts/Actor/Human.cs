@@ -6,9 +6,6 @@ using Platformer.Events;
 
 public class Human : Facility
 {
-    public NavMeshAgent navMesh;
-    public Animator animator;
-
     [SerializeField]
     private Transform itemPos;
 
@@ -16,23 +13,10 @@ public class Human : Facility
 
     void Start()
     {
-        navMesh = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
         var ev = Simulation.Schedule<MoveEvent>(1);
         ev.target = this.gameObject;
-        ev.moveStateType = MoveStateType.生産所へ;
+        ev.transform = model.positionManager.GetPosition(MoveStateType.生産所へ);
     }
-
-    void Update()
-    {
-        float speed = navMesh.velocity.magnitude;
-        animator.SetFloat("speed", speed);
-    }
-
-    /*public override void DoStartProcess(GameObject target, Facility facility)
-    {
-        target.GetComponent<WorkerState>().ChangeFollowState(startstate, facility);
-    }*/
 
     public void TakeItem(GameObject item)
     {

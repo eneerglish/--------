@@ -33,7 +33,7 @@ public class ProductionSpace : Facility
         }
         var ev = Simulation.Schedule<MoveEvent>(0.5f);
         ev.target = human.gameObject;
-        ev.moveStateType = humanMoveState;
+        ev.transform = model.positionManager.GetPosition(humanMoveState);
     }
     public void ProduceItem()
     {

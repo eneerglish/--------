@@ -9,6 +9,7 @@ public class FarmSpace : Facility
     public List<Transform> feedposlist = new List<Transform>();
     public List<GameObject> foodPrefab = new List<GameObject>();
     public List<GameObject> storage = new List<GameObject>();
+    public List<Pet> petList = new List<Pet>();
     public Transform storageSpace;
 
     public override void DoStartProcess(GameObject target)
@@ -43,7 +44,7 @@ public class FarmSpace : Facility
         }
         var ev = Simulation.Schedule<MoveEvent>(1);
         ev.target = human.gameObject;
-        ev.moveStateType = humanMoveState;
+        ev.transform = model.positionManager.GetPosition(humanMoveState);
     }
     public GameObject GenerateFood()
     {
