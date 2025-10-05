@@ -6,6 +6,7 @@ using Platformer.Events;
 
 public class Human : Facility
 {
+    TaskScheduler scheduler;
     [SerializeField]
     private Transform itemPos;
 
@@ -13,7 +14,8 @@ public class Human : Facility
 
     void Start()
     {
-        var ev = Simulation.Schedule<MoveEvent>(1);
+        scheduler = GetComponent<TaskScheduler>();
+        var ev = scheduler.Schedule<MoveEvent>(1);
         ev.target = this.gameObject;
         ev.transform = model.positionManager.GetPosition(MoveStateType.生産所へ);
     }

@@ -7,6 +7,7 @@ using Platformer.Events;
 public class Enemy : Facility
 {
     public NavMeshAgent navMesh;
+    TaskScheduler scheduler;
     public Animator animator;
     private Transform targetWorker;
 
@@ -20,6 +21,7 @@ public class Enemy : Facility
     void Start()
     {
         navMesh = GetComponent<NavMeshAgent>();
+        scheduler = GetComponent<TaskScheduler>();
         animator = GetComponent<Animator>();
         navMesh.enabled = false;
     }
@@ -46,7 +48,7 @@ public class Enemy : Facility
                 Debug.Log("着地しました。");
                 currentState = EnemyState.着地;
                 model.effectManager.InstantiateEffect(1, this.transform, 5);
-                var ev = Simulation.Schedule<EnemyChaseEvent>(7);
+                var ev = scheduler.Schedule<EnemyChaseEvent>(7);
                 ev.enemy = this;
             });
     }

@@ -17,21 +17,23 @@ public class ProductionSpace : Facility
     public override void DoStartProcess(GameObject target)
     {
         base.DoStartProcess(target);
+        TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
         for (int i = 1; i <= 5; i++)
         {
-            var ev = Simulation.Schedule<ProduceItemEvent>(i);
+            var ev = scheduler.Schedule<ProduceItemEvent>(i);
             ev.facility = this;
         }
     }
     public override void HumanStartProcess(Human human)
     {
+        TaskScheduler scheduler = human.GetComponent<TaskScheduler>();
         if (productionList.Count > 0)
         {
             GameObject item = productionList[0];
             productionList.RemoveAt(0);
             human.TakeItem(item);
         }
-        var ev = Simulation.Schedule<MoveEvent>(0.5f);
+        var ev = scheduler.Schedule<MoveEvent>(0.5f);
         ev.target = human.gameObject;
         ev.transform = model.positionManager.GetPosition(humanMoveState);
     }

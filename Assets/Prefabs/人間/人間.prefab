@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 6523754253580143263}
   - component: {fileID: 5368636373729165449}
   - component: {fileID: 7132178986962660274}
+  - component: {fileID: -434048260352455931}
   m_Layer: 0
   m_Name: "\u4EBA\u9593"
   m_TagString: Human
@@ -698,10 +699,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6288ec1e8e81f542b67187b5edfde98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startstate: 0
-  humanMoveState: 0
-  navMesh: {fileID: 0}
-  animator: {fileID: 0}
+  actionData: []
+  <humanMoveState>k__BackingField: 0
   itemPos: {fileID: 2657298917318918574}
   takeItem: {fileID: 0}
 --- !u!65 &5368636373729165449
@@ -752,6 +751,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-434048260352455931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8145243950307798601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7971449a63d599c43b22f2108c76d969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8173159525915261151
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,8 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            var ev = Simulation.Schedule<ObjectThrowing>();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            var ev = scheduler.Schedule<ObjectThrowing>();
             ev.throwObject = facility.GetFoodFromStorage();
             ev.startPos = target.transform.position + new Vector3(0, 0.2f, 0);
             ev.targetPos = facility.GetRandomTransform().position;

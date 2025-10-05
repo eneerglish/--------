@@ -27,7 +27,8 @@ public enum MoveStateType
     水辺へ,
     家へ,
     牧場へ,
-    食べ物探しへ
+    食べ物探しへ,
+    なし
 }
 
 

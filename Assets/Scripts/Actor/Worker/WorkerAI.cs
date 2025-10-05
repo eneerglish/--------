@@ -8,16 +8,25 @@ public class WorkerAI : MonoBehaviour
     private WorkerState workerState;
     private WorkerEmotion workerEmotion;
 
+    //自分専用のタスクスケジューラ
+    private TaskScheduler scheduler;
+
     void Start()
     {
         worker = GetComponent<Worker>();
         workerState = GetComponent<WorkerState>();
         workerEmotion = GetComponent<WorkerEmotion>();
+
+        scheduler = GetComponent<TaskScheduler>();
         workerState.SetFollowStateType(FollowStateType.スポーン);
+        workerState.SetMoveStateType(MoveStateType.なし);
+
+
     }
 
     void Update()
     {
+
         // 死亡状態とスポーンの時は何もしない
         if (workerState.followStateType == FollowStateType.死亡
             || workerState.followStateType == FollowStateType.スポーン) return;
@@ -30,7 +39,7 @@ public class WorkerAI : MonoBehaviour
         //寿命の判定 
         if (worker.lifeValue >= worker.lifeTime)
         {
-            var ev = Simulation.Schedule<ChangeStateEvent>();
+            var ev = scheduler.Schedule<ChangeStateEvent>();
             ev.target = this.gameObject;
             ev.newState = FollowStateType.死亡;
             return;

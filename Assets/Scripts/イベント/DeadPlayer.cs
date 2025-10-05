@@ -9,16 +9,20 @@ namespace Platformer.Events
         public GameObject target;
         public override void Execute()
         {
-            //これではタスク全消失してしまう
-            //Simulation.Clear();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            //個人のタスク全消し
+            scheduler.CancelAllTasks();
 
-            var spev = Simulation.Schedule<SpeakEvent>();
+            var spev = scheduler.Schedule<SpeakEvent>();
             spev.str = "ぐえーしんだンゴーｗ";
+            spev.target = target;
 
             //移動を中止
             NavMeshAgent navMesh = target.GetComponent<NavMeshAgent>();
             navMesh.velocity = Vector3.zero;
+            navMesh.avoidancePriority = 99;
             navMesh.enabled = false;
+
 
             //死亡アニメーション開始
             AnimatorController animatorController = target.GetComponent<AnimatorController>();

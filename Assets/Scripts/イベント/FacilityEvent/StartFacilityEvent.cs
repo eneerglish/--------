@@ -9,8 +9,10 @@ namespace Platformer.Events
         public ActionData actionData;
         public override void Execute()
         {
-            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>(); 
+            SpeakEvent spev = scheduler.Schedule<SpeakEvent>();
             spev.str = actionData.startActionText;
+            spev.target = target;
 
             AnimatorController animatorController = target.GetComponent<AnimatorController>();
             animatorController.ChangeAnimationClip(actionData.animClip);
@@ -25,7 +27,7 @@ namespace Platformer.Events
                 Debug.LogWarning("ActionTimeが0だったため、0.1秒後にイベントをスケジュールします。");
             }
 
-            var ev = Simulation.Schedule<FinishFacilityEvent>(nextEventTime);
+            var ev = scheduler.Schedule<FinishFacilityEvent>(nextEventTime);
             ev.target = target;
             ev.actionData = actionData;
 

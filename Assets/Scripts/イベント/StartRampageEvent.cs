@@ -9,18 +9,20 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-            //そのワーカーだけのタスクを消すようにしたい
-            //Simulation.Clear();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            scheduler.CancelAllTasks();
 
-            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            SpeakEvent spev = scheduler.Schedule<SpeakEvent>();
             spev.str = "おりゃあああああああ";
+            spev.target = target;
+
             AnimatorController animatorController = target.GetComponent<AnimatorController>();
             animatorController.ChangeAnimState((int)Worker.AnimState.Rotation);
             
             model.effectManager.InstantiateEffect(0, target.transform, 2);
 
 
-            var ev = Simulation.Schedule<StopRampageEvent>(2);
+            var ev = scheduler.Schedule<StopRampageEvent>(2);
             ev.target = target;
         }
     }

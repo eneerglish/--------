@@ -21,6 +21,7 @@ public class WorkerState : GameAwareBehaviour
     public void SetMoveStateType(MoveStateType state)
     {
         moveStateType = state;
+        if (moveStateType == MoveStateType.なし) return;
         SetActiveState(ActiveState.MoveStateType);
         var ev = Simulation.Schedule<MoveEvent>();
         ev.target = this.gameObject;

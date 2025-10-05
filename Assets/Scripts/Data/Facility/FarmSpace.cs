@@ -27,7 +27,8 @@ public class FarmSpace : Facility
         int feedCount = Mathf.Min(5, storage.Count);
         if (feedCount <= 0)
         {
-            var ev = Simulation.Schedule<ChangeStateEvent>();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            var ev = scheduler.Schedule<ChangeStateEvent>();
             ev.target = target;
             ev.newState = GetActionData(1).followStateType;
             ev.actionData = GetActionData(1);
@@ -38,7 +39,8 @@ public class FarmSpace : Facility
 
         for (int i = 0; i < feedCount; i++)
         {
-            var ev = Simulation.Schedule<WorkerFeeding>(i);
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            var ev = scheduler.Schedule<WorkerFeeding>(i);
             ev.target = target;
             ev.facility = this;
         }
@@ -52,7 +54,8 @@ public class FarmSpace : Facility
             storage.Add(human.takeItem);
             human.PutItem(storageSpace);
         }
-        var ev = Simulation.Schedule<MoveEvent>(1);
+        TaskScheduler scheduler = human.GetComponent<TaskScheduler>();
+        var ev = scheduler.Schedule<MoveEvent>(1);
         ev.target = human.gameObject;
         ev.transform = model.positionManager.GetPosition(humanMoveState);
     }

@@ -10,13 +10,15 @@ namespace Platformer.Events
         public ActionData actionData;
         public override void Execute()
         {
-            SpeakEvent spev = Simulation.Schedule<SpeakEvent>();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+            SpeakEvent spev = scheduler.Schedule<SpeakEvent>();
             spev.str = actionData.finishActionText;
+            spev.target = target;
 
             AnimatorController animatorController = target.GetComponent<AnimatorController>();
             animatorController.ChangeAnimState((int)Worker.AnimState.Move);
 
-            var ev = Simulation.Schedule<ChangeStateEvent>();
+            var ev = scheduler.Schedule<ChangeStateEvent>();
             ev.target = target;
             ev.newState = FollowStateType.待機;
 

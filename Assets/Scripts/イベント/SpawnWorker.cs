@@ -10,12 +10,15 @@ namespace Platformer.Events
         public override void Execute()
         {
             GameObject worker = model.workerManager.InstantiateWorker(startPos);
-            var ev = Simulation.Schedule<ObjectThrowing>();
+            TaskScheduler scheduler = worker.GetComponent<TaskScheduler>();
+            var ev = scheduler.Schedule<ObjectThrowing>();
             ev.targetPos = model.workerManager.playerSpawnPoint.position;
             ev.startPos = startPos.position;
             ev.throwObject = worker;
 
-            var ev2 = Simulation.Schedule<ChangeStateEvent>(2);
+
+            
+            var ev2 = scheduler.Schedule<ChangeStateEvent>(2);
             ev2.target = worker;
             ev2.newState = FollowStateType.待機;
 

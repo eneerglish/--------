@@ -10,15 +10,16 @@ namespace Platformer.Events
 
         public override void Execute()
         {
-
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
             //facilityは敵
 
             model.workerManager.DestroyWorker(target);
-            Simulation.Clear();
+            scheduler.CancelAllTasks();
             enemy.SetTarget(model.workerManager.GetWorker());
 
-            var spev = Simulation.Schedule<SpeakEvent>();
+            var spev = scheduler.Schedule<SpeakEvent>();
             spev.str = "食べられるーーー";
+            spev.target = target;
             
         }
     }

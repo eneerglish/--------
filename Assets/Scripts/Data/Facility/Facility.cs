@@ -14,7 +14,8 @@ public abstract class Facility : GameAwareBehaviour
     //ワーカーが施設に入ってきたとき行いたいことを書く
     public virtual void DoStartProcess(GameObject target)
     {
-        var ev = Simulation.Schedule<ChangeStateEvent>();
+        TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+        var ev = scheduler.Schedule<ChangeStateEvent>();
         ev.target = target;
         ev.newState = actionData[0].followStateType;
         ev.actionData = actionData[0];

@@ -16,13 +16,14 @@ namespace Platformer.Events
             WorkerEmotion emotions = target.GetComponent<WorkerEmotion>();
             Worker worker = target.GetComponent<Worker>();
             WorkerState state = target.GetComponent<WorkerState>();
+            TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
 
             //状態変更
             state.SetFollowStateType(newState);
 
             if (newState == FollowStateType.死亡)
             {
-                var ev = Simulation.Schedule<DeadPlayer>();
+                var ev = scheduler.Schedule<DeadPlayer>();
                 ev.target = target;
                 return;
             }
@@ -38,7 +39,7 @@ namespace Platformer.Events
             if (newState == FollowStateType.暴走)
             {
                 emotions.GetEmotion(EmotionType.怒).value -= 0.2f;
-                var ev = Simulation.Schedule<StartRampageEvent>();
+                var ev = scheduler.Schedule<StartRampageEvent>();
                 ev.target = target;
                 return;
             }
@@ -55,7 +56,7 @@ namespace Platformer.Events
                             targetEmotion.value += modifier.value;
                         }
                     }
-                    var ev = Simulation.Schedule<StartFacilityEvent>();
+                    var ev = scheduler.Schedule<StartFacilityEvent>();
                     ev.target = target;
                     ev.actionData = actionData;
                 }

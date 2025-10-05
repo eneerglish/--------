@@ -13,6 +13,7 @@ public class Pet : GameAwareBehaviour
         繁殖
     }
     NavMeshAgent navMesh;
+    TaskScheduler scheduler;
 
     List<Transform> moveList = new List<Transform>();
 
@@ -24,20 +25,21 @@ public class Pet : GameAwareBehaviour
     void Start()
     {
         navMesh = GetComponent<NavMeshAgent>();
+        scheduler = GetComponent<TaskScheduler>();
     }
 
     void Update()
     {
         if (foodCount >= 2)
         {
-            var ev = Simulation.Schedule<SpawnWorker>();
+            var ev = scheduler.Schedule<SpawnWorker>();
             ev.startPos = this.transform;
             foodCount = 0;
         }
     
         if (navMesh.remainingDistance < 0.01f && !navMesh.pathPending)
             {
-                var ev = Simulation.Schedule<MoveEvent>();
+                var ev = scheduler.Schedule<MoveEvent>();
                 ev.target = this.gameObject;
                 ev.transform = GetRandomTransform();
             }
