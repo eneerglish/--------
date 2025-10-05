@@ -8,6 +8,8 @@ TagManager:
   - Worker
   - Ground
   - Production
+  - "\u30EF\u30FC\u30AB\u30FC"
+  - Sphere
   layers:
   - Default
   - TransparentFX

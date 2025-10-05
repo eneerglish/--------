@@ -18,6 +18,7 @@ public class ProductionSpace : Facility
     {
         base.DoStartProcess(target);
         TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
+        
         for (int i = 1; i <= 5; i++)
         {
             var ev = scheduler.Schedule<ProduceItemEvent>(i);

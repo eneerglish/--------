@@ -38,7 +38,7 @@ public class Worker : GameAwareBehaviour
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
-        lifeTime =120;
+        lifeTime = Random.Range(60, 120);
         lifeValue = 0;
         //productionSpeed = Random.Range(2f, 5f);
         //moveSpeed = Random.Range(2f, 5f);
@@ -61,5 +61,14 @@ public class Worker : GameAwareBehaviour
     void Start()
     {
         InitSet();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Sphere"))
+        {
+            lifeTime += 1;
+            Destroy(other.gameObject);
+        }
     }
 }
