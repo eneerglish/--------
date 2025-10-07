@@ -14,6 +14,7 @@ public enum FollowStateType
     運搬,
     お腹すいた,
     餌やり,
+    水やり,
     睡眠,
     暴走,
     被捕食,
@@ -27,6 +28,7 @@ public enum MoveStateType
     水辺へ,
     家へ,
     牧場へ,
+    木へ,
     食べ物探しへ,
     なし
 }

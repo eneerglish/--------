@@ -52,7 +52,8 @@ public class Worker : GameAwareBehaviour
         {
             MoveStateType.生産所へ,
             MoveStateType.水辺へ,
-            MoveStateType.牧場へ
+            MoveStateType.牧場へ,
+            MoveStateType.木へ
         };
         int randomIndex = Random.Range(0, destinations.Count);
         return destinations[randomIndex];
