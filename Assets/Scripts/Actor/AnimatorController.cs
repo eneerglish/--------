@@ -16,8 +16,9 @@ public class AnimatorController : MonoBehaviour
     }
     void Update()
     {
+        if (navMesh == null) return;
         //アニメーションの更新
-        float speed = navMesh.velocity.magnitude;
+            float speed = navMesh.velocity.magnitude;
         anim.SetFloat("speed", speed);
     }
 
