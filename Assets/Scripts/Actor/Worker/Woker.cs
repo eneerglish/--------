@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Platformer.Core;
 using Platformer.Events;
 using UnityEngine.AI;
+using DG.Tweening;
 public class Worker : GameAwareBehaviour
 {
     public enum AnimState
@@ -38,7 +39,7 @@ public class Worker : GameAwareBehaviour
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
-        lifeTime = Random.Range(60, 120);
+        lifeTime = 1;//Random.Range(60, 120);
         lifeValue = 0;
         //productionSpeed = Random.Range(2f, 5f);
         //moveSpeed = Random.Range(2f, 5f);
@@ -69,6 +70,7 @@ public class Worker : GameAwareBehaviour
         if (other.gameObject.CompareTag("Sphere"))
         {
             lifeTime += 1;
+            other.transform.DOKill();
             Destroy(other.gameObject);
         }
     }

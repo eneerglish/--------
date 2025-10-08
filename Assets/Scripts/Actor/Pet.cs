@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using Platformer.Core;
 using Platformer.Events;
+using DG.Tweening;
 public class Pet : GameAwareBehaviour
 {
     enum State
@@ -52,6 +53,7 @@ public class Pet : GameAwareBehaviour
             if (foodCount < 2)
             {
                 foodCount++;
+                other.gameObject.transform.DOKill();
                 Destroy(other.gameObject);
             }
             else

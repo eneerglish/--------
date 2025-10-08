@@ -6,13 +6,20 @@ public class WorkerManager : MonoBehaviour
     public List<GameObject> workerList = new List<GameObject>();
     public GameObject prefab;
     public Transform playerSpawnPoint;
+    public GameObject RestButton;
+    public bool isReset = false;
 
     public List<ActionData> actionDataList = new List<ActionData>();
 
     public void DestroyWorker(GameObject worker)
     {
         workerList.Remove(worker);
-        Destroy(worker);
+        //Destroy(worker);
+        /*if (workerList.Count <= 0)
+        {
+            RestButton.SetActive(true);
+            isReset = true;
+        }*/
     }
 
     public GameObject InstantiateWorker(Transform transform = null)

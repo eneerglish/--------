@@ -27,6 +27,8 @@ namespace Platformer.Events
             //死亡アニメーション開始
             AnimatorController animatorController = target.GetComponent<AnimatorController>();
             animatorController.ChangeAnimState((int)Worker.AnimState.Death);
+
+            model.workerManager.DestroyWorker(target);
         }
     }
 }

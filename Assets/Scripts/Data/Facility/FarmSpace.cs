@@ -25,6 +25,7 @@ public class FarmSpace : Facility
     public override void DoStartProcess(GameObject target)
     {
         int feedCount = Mathf.Min(5, storage.Count);
+
         if (feedCount <= 0)
         {
             TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
@@ -36,13 +37,16 @@ public class FarmSpace : Facility
         }
 
         base.DoStartProcess(target);
-
+        //同時に入ってきたときのエラーを回避したい
+        List<GameObject> _foodList = new List<GameObject>();
         for (int i = 0; i < feedCount; i++)
         {
+            _foodList.Add(GetFoodFromStorage());
             TaskScheduler scheduler = target.GetComponent<TaskScheduler>();
             var ev = scheduler.Schedule<WorkerFeeding>(i);
             ev.target = target;
             ev.facility = this;
+            ev.throwObject = _foodList[i];
         }
     }
 
