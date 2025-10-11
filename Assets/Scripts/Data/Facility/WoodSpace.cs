@@ -29,7 +29,7 @@ public class WoodSpace : Facility
         {
             stateMachine.ChangeState(stateMachine.currentState == State.苗木 ? State.木 : State.苗木);
             saplingAnimatorController.ChangeAnimState(stateMachine.phase);
-            treeAnimatorController.ChangeAnimState(1);
+            treeAnimatorController.ChangeAnimState(2);
             Debug.Log("木のスペースで成長が");
         }
         else

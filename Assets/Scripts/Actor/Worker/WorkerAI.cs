@@ -49,10 +49,10 @@ public class WorkerAI : MonoBehaviour
         if (workerState.activeState != ActiveState.FollowStateType) return;
 
         //眠かったら家へ
-        if (workerState.followStateType == FollowStateType.待機 && worker.sleapValue >= 3 && workerState.moveStateType != MoveStateType.家へ)
+        if (workerState.followStateType == FollowStateType.待機 && worker.sleapValue >= 3 && workerState.moveStateType != MoveStateType.家1へ)
         {
             worker.sleapValue = 0;
-            workerState.SetMoveStateType(MoveStateType.家へ);
+            workerState.SetMoveStateType(MoveStateType.家1へ);
             return;
         }
 

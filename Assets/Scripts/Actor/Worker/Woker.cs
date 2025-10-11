@@ -39,7 +39,7 @@ public class Worker : GameAwareBehaviour
         workerID = GetInstanceID();
         workerName = "Worker" + workerID.ToString();
         hungerValue = 6;
-        lifeTime = 1;//Random.Range(60, 120);
+        lifeTime = Random.Range(60, 120);
         lifeValue = 0;
         //productionSpeed = Random.Range(2f, 5f);
         //moveSpeed = Random.Range(2f, 5f);
@@ -54,7 +54,8 @@ public class Worker : GameAwareBehaviour
             MoveStateType.生産所へ,
             MoveStateType.水辺へ,
             MoveStateType.牧場へ,
-            MoveStateType.木へ
+            MoveStateType.木へ,
+            MoveStateType.鉱山へ
         };
         int randomIndex = Random.Range(0, destinations.Count);
         return destinations[randomIndex];

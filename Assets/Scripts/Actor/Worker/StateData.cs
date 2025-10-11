@@ -22,15 +22,4 @@ public enum FollowStateType
     スポーン
 }
 
-public enum MoveStateType
-{
-    生産所へ,
-    水辺へ,
-    家へ,
-    牧場へ,
-    木へ,
-    食べ物探しへ,
-    なし
-}
-
 

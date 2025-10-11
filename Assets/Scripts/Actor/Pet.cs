@@ -53,7 +53,7 @@ public class Pet : GameAwareBehaviour
             if (foodCount < 2)
             {
                 foodCount++;
-                other.gameObject.transform.DOKill();
+                other.transform.DOKill();
                 Destroy(other.gameObject);
             }
             else
